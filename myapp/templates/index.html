@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="{% static 'style css/index.css' %}">
+</head>
+<body>
+
+<div class="calculator">
+    <form method="POST" action="{% url 'calculator' %}">
+        {% csrf_token %}
+
+        <!-- Display -->
+        <div class="display">
+        <input type="text" value="{{ display }}" readonly class="display">
+        </div>
+        <!-- Buttons -->
+        <div class="buttons">
+            {% for n in "789" %}
+                <button type="submit" name="num" value="{{ n }}">{{ n }}</button>
+            {% endfor %}
+            <button type="submit" name="operator" value="/">/</button>
+
+            {% for n in "456" %}
+                <button type="submit" name="num" value="{{ n }}">{{ n }}</button>
+            {% endfor %}
+            <button type="submit" name="operator" value="*">*</button>
+
+            {% for n in "123" %}
+                <button type="submit" name="num" value="{{ n }}">{{ n }}</button>
+            {% endfor %}
+            <button type="submit" name="operator" value="-">-</button>
+
+            <button type="submit" name="num" value="0">0</button>
+            <button type="submit" name="num" value=".">.</button>
+            <button type="submit" name="operator" value="+">+</button>
+            <button type="submit" name="action" value="=">=</button>
+
+            <button type="submit" name="action" value="C" class="clear">C</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
